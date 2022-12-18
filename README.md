@@ -33,9 +33,19 @@ Iniciar o ambiente
 ```sh
 npm run start:dev
 ```
-Crie um cluster no <a href='https://console.upstash.com/'>Upstash</a> e configure o endpoint no procuder.
 
-Em outra diretório, crie o producer para enviar notificações ao microserviço:
+Para criar um producer você pode iniciar um projeto node:
+```bash
+npm init
+```
+
+Instalar o kafka:
+```
+npm i kafkajs
+```
+Criar um cluster no <a href='https://console.upstash.com/'>Upstash</a>.
+
+E configurar o producer: 
 ```js
 import { Kafka } from 'kafkajs'
 import { randomUUID } from 'node:crypto'
@@ -43,7 +53,7 @@ import { randomUUID } from 'node:crypto'
 async function bootstrap() {
   const kafka = new Kafka({
     clientId: 'test-producer',
-    brokers: ['past_your_borker'],
+    brokers: ['paste_your_broker'],
   sasl: {
     mechanism: 'scram-sha-256',
     username: 'paste_your_username',
