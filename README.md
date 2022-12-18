@@ -25,13 +25,54 @@ O projeto desenvolvido durante o bootcamp IgniteLab tem as funcionalidades:
 Instalar as dependências
 
 ```sh
-npm installa
+npm install
 ```
 
 Iniciar o ambiente
 
 ```sh
 npm run start:dev
+```
+Crie um cluster no <a href='https://console.upstash.com/'>Upstash</a> e configure o endpoint no procuder.
+
+Em outra diretório, crie o producer para enviar notificações ao microserviço:
+```js
+import { Kafka } from 'kafkajs'
+import { randomUUID } from 'node:crypto'
+
+async function bootstrap() {
+  const kafka = new Kafka({
+    clientId: 'test-producer',
+    brokers: ['past_your_borker'],
+  sasl: {
+    mechanism: 'scram-sha-256',
+    username: 'paste_your_username',
+    password: 'paste_your_password',
+  },
+  ssl: true,
+  })
+
+  const producer = kafka.producer()
+
+  await producer.connect()
+
+  await producer.send({
+    topic: 'notifications.send-notification',
+    messages: [
+      {
+        value: JSON.stringify({
+          content: 'Nova solicitação de amizade!',
+          category: 'social',
+          recipientId: randomUUID(),
+        })
+      }
+    ]
+  })
+
+  await producer.disconnect()
+}
+
+bootstrap()
 ```
 
 <p align="right">
