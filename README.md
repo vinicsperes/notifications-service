@@ -6,7 +6,7 @@
 
 ## :atom: Projeto
 
-O projeto desenvolvido durante o bootcamp IgniteLab da <a href="https://www.rocketseat.com.br/"> Rocketseat </a>, tem as funcionalidades:
+O projeto desenvolvido durante o bootcamp IgniteLab da <a href="https://www.rocketseat.com.br/"> Rocketseat</a>, tem as funcionalidades:
 - Criar notificação
 - Retornar todas as notificações de um recipiente
 - Contar todas as notificações de um recipiente
